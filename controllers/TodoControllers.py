@@ -7,7 +7,7 @@ from deps import get_todo_service
 from errors.ErrosResponse import ErrorResponse
 from exceptions.TodoDuplicationException import TodoDuplicationException
 from models.Todo import Todo
-from requests import CreateTodoRequest
+from request.CreateTodoRequest import CreateTodoRequest
 from services.TodoService import TodoService
 
 

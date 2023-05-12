@@ -3,7 +3,7 @@ from fastapi import APIRouter, status, Body, Depends, HTTPException
 from auth.user import get_current_user
 from deps import get_user_todo_service
 from exceptions.TodoDuplicationException import TodoDuplicationException
-from request import CreateTodoRequest
+from request.CreateTodoRequest import CreateTodoRequest
 from response.GetByUsernameResponse import GetByUsernameResponse
 from services.UserTodoService import UserTodoService
 

@@ -1,6 +1,4 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import Optional
 
 from controllers.TodoControllers import todo_router
 from controllers.UserController import user_router
@@ -11,22 +9,9 @@ from errors.ErrorHandlers import register_error_handlers
 app = FastAPI()
 
 
-class Todo(BaseModel):
-    id: Optional[int]
-    label: str
-
-
-todos = []
-
-
 @app.on_event("startup")
 async def on_startup():
     await init_db()
-
-
-@app.get("/test")
-async def test():
-    return {"message": "Dobry den. Nashledanou."}
 
 
 app.include_router(todo_router, prefix="/api/v1")

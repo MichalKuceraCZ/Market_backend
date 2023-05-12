@@ -4,7 +4,7 @@ import asyncpg
 
 from exceptions.TodoDuplicationException import TodoDuplicationException
 from models.Todo import Todo
-from request import CreateTodoRequest
+from request.CreateTodoRequest import CreateTodoRequest
 
 
 class TodoService:
