@@ -6,7 +6,7 @@ from sqlalchemy import exc
 
 from exceptions.TodoDuplicationException import TodoDuplicationException
 from models.Todo import Todo
-from requests import CreateTodoRequest
+from request import CreateTodoRequest
 
 
 # zalozit todo do databaze
