@@ -14,6 +14,11 @@ async def on_startup():
     await init_db()
 
 
+@app.get("/")
+async def index():
+    return {"status": "Api is running"}
+
+
 app.include_router(todo_router, prefix="/api/v1")
 app.include_router(user_router, prefix="/api/v1")
 app.include_router(user_todo_router, prefix="/api/v1")
