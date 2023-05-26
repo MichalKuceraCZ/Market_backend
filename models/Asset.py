@@ -13,7 +13,7 @@ from models.User import User
 class Asset(SQLModel, table=True):
     __tablename__ = "asset"
 
-    id: Optional[int] = Field(default=None, primary_key=True)
+    asset_id: Optional[int] = Field(default=None, primary_key=True)
     user_id: int = Field(
         sa_column=sa.Column(sa.Integer, sa.ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE")))
 
