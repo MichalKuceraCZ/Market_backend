@@ -9,7 +9,7 @@ password = config.get("DB_PASSWORD")
 dbname = config.get("DB_NAME")
 db_port = config.get("DB_PORT")
 db_host = config.get("DB_HOST")
-
+api_key = config.get("API_KEY")
 
 SQLALCHEMY_DATABASE_URL = f"postgresql+asyncpg://{username}:{password}@{db_host}:{db_port}/{dbname}"
 engine = create_async_engine(SQLALCHEMY_DATABASE_URL, echo=True, future=True)
