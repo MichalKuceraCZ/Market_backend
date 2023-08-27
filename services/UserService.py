@@ -16,6 +16,14 @@ class UserService:
     def __init__(self, session: Session):
         self.session = session
 
+    async def delete(self, id: int):
+        query = (
+            delete(User)
+            .where(User.user_id == id)
+        )
+
+        await self.session.execute(query)
+
     async def create_user(self, data: UserCreateRequest):
         try:
             new_user = User(
