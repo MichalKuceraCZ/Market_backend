@@ -4,6 +4,7 @@ from services.TodoService import TodoService
 from services.UserService import UserService
 from services.UserTodoService import UserTodoService
 from services.PolygonService import PolygonService
+from services.StocksService import StocksService
 
 
 async def get_todo_service():
@@ -41,3 +42,11 @@ async def get_polygon_service():
             context = {**global_context, "session": session}
 
             yield PolygonService(context)
+
+
+async def get_stocks_service():
+    async with async_session() as session:
+        async with session.begin():
+            context = {**global_context, "session": session}
+
+            yield StocksService(context)
