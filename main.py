@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
+from controllers.StocksController import stocks_router
 from controllers.TodoControllers import todo_router
 from controllers.UserController import user_router
 from controllers.UserTodoControler import user_todo_router
@@ -31,5 +32,7 @@ async def index():
 app.include_router(todo_router, prefix="/api/v1")
 app.include_router(user_router, prefix="/api/v1")
 app.include_router(user_todo_router, prefix="/api/v1")
+
+app.include_router(stocks_router, prefix="/api/v1")
 
 register_error_handlers(app)
