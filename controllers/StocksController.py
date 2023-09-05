@@ -12,7 +12,7 @@ stocks_router = APIRouter(
 )
 
 
-@stocks_router.post('/')
+@stocks_router.post("/")
 async def create_stocks(
         *,
         stocks_service: StocksService = Depends(get_stocks_service),
@@ -22,3 +22,12 @@ async def create_stocks(
     await stocks_service.create(polygon_data)
 
     return Response(status_code=status.HTTP_200_OK)
+
+
+@stocks_router.get("/")
+async def get_stocks(*,
+                     stocks_service: StocksService = Depends(get_stocks_service)):
+    stocks = await stocks_service.get()
+
+    return stocks
+    # return Response(status_code=status.HTTP_200_OK, content=stocks)
