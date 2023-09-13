@@ -31,4 +31,13 @@ class StocksService:
         )
 
         result = await self.session.execute(query)
-        return result.all()
+        return result.scalars().all()
+
+    async def getById(self, id: int) -> StocksModel:
+        query = (
+            select(StocksModel)
+            .where(StocksModel.stocks_id == id)
+        )
+
+        result = await self.session.execute(query)
+        return result.scalars().one()

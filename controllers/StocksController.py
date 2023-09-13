@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import NoResultFound
 from starlette import status
 from starlette.responses import Response
 
@@ -31,3 +32,22 @@ async def get_stocks(*,
 
     return stocks
     # return Response(status_code=status.HTTP_200_OK, content=stocks)
+
+
+@stocks_router.get("/{id}")
+async def get_stock(*,
+                    stocks_service: StocksService = Depends(get_stocks_service),
+                    id: int
+                    ):
+    try:
+        stock = await stocks_service.getById(id)
+        return stock
+    except NoResultFound as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={
+                "message": f"Stock not found [{id}]",
+                "code": "STOCK_NOT_FOUND",
+                "status": status.HTTP_404_NOT_FOUND
+            }
+        )
