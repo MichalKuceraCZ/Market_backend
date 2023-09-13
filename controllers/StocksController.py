@@ -51,3 +51,13 @@ async def get_stock(*,
                 "status": status.HTTP_404_NOT_FOUND
             }
         )
+
+
+@stocks_router.post("/data/{ticker}")
+async def create_stock_data(*,
+                            polygon_service: PolygonService = Depends(get_polygon_service),
+                            ticker: str
+                            ):
+    stock_data = await polygon_service.get_stock_data(ticker)
+    await polygon_service.create_data(stock_data)
+    return Response(status_code=status.HTTP_200_OK)

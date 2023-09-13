@@ -1,6 +1,7 @@
 import requests
 
 from data import StocksData
+from data.StockAggregatesData import StockAggregatesData
 
 
 class PolygonService:
@@ -15,3 +16,11 @@ class PolygonService:
         stocks = response.json()
 
         return stocks["results"]
+
+    def get_stock_data(self, ticker: str) -> list[StockAggregatesData]:
+        response = requests.get(f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range/1/day/2023-01-05/2023-01-20"
+                                f"?adjusted=true&sort=asc&limit=120&apiKey={self.context['api_key']}")
+
+        data = response.json()
+
+        return data["results"]

@@ -19,6 +19,7 @@ async def init_db():
     from models.User import User
     from models.Todo import Todo
     from models.StocksModel import StocksModel
+    from models.StockDataModel import StockDataModel
 
     async with engine.begin() as conn:
         # await conn.run_sync(SQLModel.metadata.drop_all)
